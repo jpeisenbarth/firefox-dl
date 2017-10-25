@@ -28,21 +28,20 @@ else
 	exit 0
 fi
 
-if [ ! -d "/tmp/ff$RELEASE" ] ; then
-	mkdir /tmp/ff$RELEASE
-else
-	rm -rf /tmp/ff$RELEASE/*
-fi
-
-if [ ! -d "/opt/firefox$RELEASE" ] 
+if [ ! -d "/opt/firefox$RELEASE" ]
 then
 	sudo mkdir /opt/firefox$RELEASE
 fi
 
-wget $URL -O /tmp/ff$RELEASE/ff$RELEASE.tar.bz2
-sudo tar -C /opt/firefox$RELEASE/ -xvjf /tmp/ff$RELEASE/*.tar.bz2
+wget $URL -O /tmp/ff$RELEASE.tar.bz2
+sudo tar --strip 1 -C /opt/firefox$RELEASE/ -xvjf /tmp/ff$RELEASE.tar.bz2
 
-if [ ! -f "/usr/local/bin/firefox$RELEASE" ] 
+MOZICONPATH=/opt/firefox$RELEASE/browser/icons/mozicon128.png
+MOZICONDESTPATH=/usr/share/icons/hicolor/128x128/apps/firefox$RELEASE.png
+
+echo $MOZICONPATH $MOZICONDESTPATH
+if ! cmp $MOZICONPATH $MOZICONDESTPATH >/dev/null 2>&1
 then
-	sudo ln -s /opt/firefox$RELEASE/firefox/firefox /usr/local/bin/firefox$RELEASE
+	echo "mozicon128.png are not the same. Update ..."
+  sudo ln -sf /opt/firefox$RELEASE/browser/icons/mozicon128.png /usr/share/icons/hicolor/128x128/apps/firefox$RELEASE.png
 fi
