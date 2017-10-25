@@ -7,11 +7,8 @@ echo "3. Firefox Developer Edition"
 echo "4. Firefox Nightly"
 read -rp "> " CHOICE
 
-if  uname -m| grep -q "i686" ; then 
-	ARCHI="i686"
-	ARCHI_SHORT=""
-else
-	ARCHI="x86_64"
+ARCHI_SHORT=""
+if  uname -m| grep -q "x86_64" ; then
 	ARCHI_SHORT="64"
 fi
 
@@ -28,7 +25,7 @@ elif [ $CHOICE = 4 ]; then
 	URL=$(wget -q -O - http://nightly.mozilla.org | egrep -o "href=.*?firefox.*?linux-${ARCHI}\.tar\.bz2['"'"'"]" | sed -e 's/^href=//' -e 's/["'"'"']//g')
 	RELEASE="-nightly"
 else
-	exit
+	exit 0
 fi
 
 if [ ! -d "/tmp/ff$RELEASE" ] ; then
