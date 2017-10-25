@@ -1,11 +1,11 @@
 # What is it ?
 
-a small bash script who dl the lastest stable | beta | aurora | nightly of firefox for linux and install it 
+a small bash script who dl the lastest stable | beta | developer | nightly of firefox for linux and install it 
 
 # How-to
 
-> git clone https://github.com/arnaudbey/firefox-dl-n-install.git
+> git clone https://github.com/jpeisenbarth/firefox-dl.git
 
-> cd firefox-dl-n-install
+> cd firefox-dl
 
-> sh ./firefox_dl_n_install.sh
+> sh ./firefox-.sh
