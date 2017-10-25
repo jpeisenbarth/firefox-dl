@@ -13,8 +13,8 @@ if  uname -m| grep -q "x86_64" ; then
 fi
 
 if [ $CHOICE = 1 ]; then
-	RELEASE=""
 	URL=$(wget -q -O - https://www.mozilla.org/en-US/firefox/all/ | egrep -o "href=.*?os=linux${ARCHI_SHORT}&amp;lang=en-US['"'"'"]" | sed -e 's/\&amp;/\&/g' -e 's/^href=//' -e 's/["'"'"']//g' )
+	RELEASE="-stable"
 elif [ $CHOICE = 2 ]; then
 	RELEASE="-beta"
 	URL=$(wget -q -O - https://www.mozilla.org/en-US/firefox/beta/all/ | egrep -o "href=.*?os=linux${ARCHI_SHORT}&amp;lang=en-US['"'"'"]" | sed -e 's/\&amp;/\&/g' -e 's/^href=//' -e 's/["'"'"']//g' )
